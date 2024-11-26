@@ -56,8 +56,13 @@ def plot_events_vs_spikes(county_data, events):
     plt.scatter(county_data.index[county_data['is_spike']],
                 county_data['new_cases'][county_data['is_spike']],
                 color="red", label="Detected Spikes")
-    for event_date in events['date']:
-        plt.axvline(x=event_date, color='orange', linestyle='--', label='Event Date')
+    
+    for i, event_date in enumerate(events['date']):
+        if i == 0:
+            plt.axvline(x=event_date, color='orange', linestyle='--', label='Event Date')
+        else:
+            plt.axvline(x=event_date, color='orange', linestyle='--')
+
     plt.title("COVID-19 Case Counts with Events and Detected Spikes")
     plt.xlabel("Date")
     plt.ylabel("New Cases")
@@ -85,7 +90,7 @@ def main():
     if ccc_data.empty:
         raise ValueError("CCC dataset is empty. Check the file and preprocessing.")
 
-    county_fips = '53061'
+    county_fips = '06037' ## change this line to analyze different counties
     print(f"Filtering data for county FIPS: {county_fips}")
 
     county_data = nyt_data[nyt_data['fips'] == county_fips].set_index('date')
