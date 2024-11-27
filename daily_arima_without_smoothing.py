@@ -49,7 +49,8 @@ model = SARIMAX(
     order=(1, 1, 1),  # can adjust order params 
     seasonal_order=(1, 0, 1, 7)  # can adjust seasonal params
 )
-results = model.fit()
+# results = model.fit() # can adjust number of iterations
+results = model.fit(maxiter=1000)
 
 forecast = results.get_forecast(steps=30, exog=[[1]] * 30)  # can adjust these 
 forecast_ci = forecast.conf_int()
