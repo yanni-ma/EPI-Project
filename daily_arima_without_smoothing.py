@@ -1,3 +1,4 @@
+## code is copied from daily_arima.py, this is to show what it looks like without smoothing
 import pandas as pd
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import matplotlib.pyplot as plt
@@ -43,14 +44,12 @@ if county_data.empty:
 
 # fit SARIMAX model
 model = SARIMAX(
-    ## county_data['new_cases'], # uncomment this line to use original data, not adjusted cases (smoothed data)
-    county_data['adjusted_cases'],  # testing if using adjusted_cases results in better results
+    county_data['new_cases'], # uncomment this line to use original data, not adjusted cases (smoothed data)
     exog=county_data[['has_event']],
     order=(1, 1, 1),  # can adjust order params 
     seasonal_order=(1, 0, 1, 7)  # can adjust seasonal params
 )
-# results = model.fit() # can adjust number of iterations
-results = model.fit(maxiter=1000)
+results = model.fit()
 
 forecast = results.get_forecast(steps=30, exog=[[1]] * 30)  # can adjust these 
 forecast_ci = forecast.conf_int()
@@ -60,9 +59,6 @@ plt.figure(figsize=(15, 9))
 
 # observed cases
 plt.plot(county_data['new_cases'], label='Observed New Cases', color='blue')
-
-# adjusted cases (smoothed data)
-plt.plot(county_data['adjusted_cases'], label='Adjusted Cases (Smoothed)', color='green', linestyle='--')
 
 # forecasted cases
 plt.plot(
@@ -81,10 +77,10 @@ plt.fill_between(
     alpha=0.3
 )
 
-plt.title('SARIMAX Model: Observed, Adjusted, and Forecasted New Cases for county: ' + county)
+plt.title('SARIMAX Model: Observed and Forecasted New Cases for county: ' + county)
 plt.xlabel('Time (Days)')
 plt.ylabel('New Cases')
 plt.legend()
 plt.grid()
-plt.savefig('./output/SARIMAX_forecast_county_' + county + '.png')
+plt.savefig('./output/no_smoothing_SARIMAX_forecast_county_' + county + '.png')
 plt.show()
