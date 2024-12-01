@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Spreader: Political Rallies and COVID-19</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Super Spreader: How Political Rallies Spread Disease During the COVID-19 Pandemic</h1>
+        <p><strong>Authors:</strong> Bickston Laenger (<a href="mailto:bickston@gatech.edu">bickston@gatech.edu</a>), Yanni Ma (<a href="mailto:yanni.ma@gatech.edu">yanni.ma@gatech.edu</a>)</p>
+        <p><strong>Institution:</strong> Georgia Institute of Technology</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#problem-definition">Problem Definition</a></li>
+            <li><a href="#literature-survey">Literature Survey</a></li>
+            <li><a href="#proposed-method">Proposed Method</a></li>
+            <li><a href="#experiments">Experiments</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>A superspreader event (SSE) is an incident in which a single infected individual transmits a contagious disease (in this case COVID-19) to a much larger number of people than the average transmission rate. Factors such as close contact, large crowds, and prolonged exposure can contribute to an event becoming a superspreader.</p>
+            <p>During the COVID-19 pandemic, events like weddings, religious services, and political rallies often led to spikes in cases. In this project, we analyze how political SSEs uniquely contributed to the spread of COVID-19, with a focus on their dynamics and consequences.</p>
+        </section>
+
+        <section id="problem-definition">
+            <h2>Problem Definition</h2>
+            <p>We aim to model the spread of COVID-19 at political rallies and compare it to other types of SSEs. Using ARIMA and SEIR models, we will determine whether political events exhibit unique characteristics that amplify disease transmission.</p>
+        </section>
+
+        <section id="literature-survey">
+            <h2>Literature Survey</h2>
+            <p>Superspreader events have long influenced pandemic dynamics. Existing literature highlights their significance in accelerating transmission but often lacks specificity regarding political rallies. Our survey synthesizes insights from key studies and identifies gaps we aim to address.</p>
+            <ul>
+                <li><strong>Strengths:</strong> Papers like Kumar et al. (2020) and Stein (2011) provide foundational insights into SSE dynamics.</li>
+                <li><strong>Weaknesses:</strong> Limited definitions of SSEs and retrospective analyses hinder proactive prevention.</li>
+            </ul>
+        </section>
+
+        <section id="proposed-method">
+            <h2>Proposed Method</h2>
+            <h3>Intuition</h3>
+            <p>We hypothesize that political rallies exhibit unique transmission patterns due to crowd behavior and ideology-driven non-compliance with safety protocols.</p>
+            
+            <h3>Approach</h3>
+            <p>Data from reliable sources like the Crowd Counting Consortium and NYT COVID-19 dataset will be analyzed using ARIMA and SEIR models. Our findings will be visualized to identify trends and correlations.</p>
+        </section>
+
+        <section id="experiments">
+            <h2>Experiments</h2>
+            <h3>Questions</h3>
+            <ul>
+                <li>Do political rallies differ significantly from other SSEs in disease spread?</li>
+                <li>How do different political affiliations impact the dynamics of transmission?</li>
+            </ul>
+            
+            <h3>Experiment Details</h3>
+            <p>Using ARIMA for time-series forecasting and SEIR for epidemiological modeling, we aim to correlate event characteristics with case spikes. Visualizations will compare infection dynamics across event types.</p>
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>Our analysis aims to clarify the role of political SSEs in the COVID-19 pandemic, providing insights to inform future public health strategies. Limitations include model imperfection and data availability, but our findings will lay groundwork for further research.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Bickston Laenger and Yanni Ma</p>
+    </footer>
+</body>
+</html>
