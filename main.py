@@ -50,7 +50,7 @@ def plot_spikes(county_data):
     plt.grid()
     plt.show()
 
-def plot_events_vs_spikes(county_data, events):
+def plot_events_vs_spikes(county_data, events, county_fips):
     plt.figure(figsize=(12, 6))
     plt.plot(county_data['new_cases'], label="New Cases", color="blue")
     plt.scatter(county_data.index[county_data['is_spike']],
@@ -63,7 +63,7 @@ def plot_events_vs_spikes(county_data, events):
         else:
             plt.axvline(x=event_date, color='orange', linestyle='--')
 
-    plt.title("COVID-19 Case Counts with Events and Detected Spikes")
+    plt.title(f"COVID-19 Case Counts with Events and Detected Spikes for county {county_fips}")
     plt.xlabel("Date")
     plt.ylabel("New Cases")
     plt.legend()
@@ -90,30 +90,38 @@ def main():
     if ccc_data.empty:
         raise ValueError("CCC dataset is empty. Check the file and preprocessing.")
 
-    county_fips = '06037' ## change this line to analyze different counties
-    print(f"Filtering data for county FIPS: {county_fips}")
+    with open("./datasets/county_list.txt") as file:
+        for fips in file:
+            county_fips = fips.strip()
 
-    county_data = nyt_data[nyt_data['fips'] == county_fips].set_index('date')
-    if county_data.empty:
-        raise ValueError(f"No data found for FIPS {county_fips} in NYT dataset.")
+            print(f"Filtering data for county FIPS: {county_fips}")
 
-    county_data['new_cases'] = county_data['new_cases'].clip(lower=0)
+            county_data = nyt_data[nyt_data['fips'] == county_fips].set_index('date')
+            if county_data.empty:
+                print(f"No data found for FIPS {county_fips} in NYT dataset.")
+                continue
 
-    print("Detecting spikes in case data...")
-    county_data = detect_spikes(county_data)
+            county_data['new_cases'] = county_data['new_cases'].clip(lower=0)
 
-    plot_spikes(county_data)
+            print("Detecting spikes in case data...")
+            county_data = detect_spikes(county_data)
 
-    print("Analyzing correlation with events...")
-    county_events = ccc_data[(ccc_data['fips_code'] == county_fips) & (ccc_data['date'] >= '2020-01-01')]
-    if not county_events.empty:
-        correlation_results = correlate_spikes_with_events(county_data, county_events)
-        print("Correlation results:")
-        print(correlation_results)
-        plot_events_vs_spikes(county_data, county_events)
-        analyze_valence_effects(correlation_results)
-    else:
-        print("No CCC events found for the selected county.")
+            #plot_spikes(county_data)
+
+            print("Analyzing correlation with events...")
+            county_events = ccc_data[(ccc_data['fips_code'] == county_fips) & (ccc_data['date'] >= '2020-01-01')]
+            if not county_events.empty:
+                correlation_results = correlate_spikes_with_events(county_data, county_events)
+                print("Correlation results:")
+                print(correlation_results)
+                plot_events_vs_spikes(county_data, county_events, county_fips)
+                analyze_valence_effects(correlation_results)
+            else:
+                print("No CCC events found for the selected county.")
 
 if __name__ == "__main__":
     main()
+
+    counties_I_noticed_spikes_in = [41067, 51520, 28047, 36101, 54091, 35005, 26115, 41041, 29031, 36099, 47187, 27131, 48441, 53029, 
+                                    21185, 42005, 51810, 15009, 37077, 48005, 25007, 40115, 22061]
+    
