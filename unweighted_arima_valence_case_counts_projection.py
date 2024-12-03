@@ -26,7 +26,11 @@ merged_data_2020 = merged_data_2020.sort_values('date').reset_index(drop=True)
 merged_data_2020['has_event'] = merged_data_2020['fips_code'].notna().astype(int)
 merged_data_2020['valence'] = merged_data_2020['valence'].fillna(0)
 
+## testing to make sure it's not just projecting more cases for orange since that's the positive one
+## result of test: same result whether orange (right-leaning) or green (left-leaning) is positive
+# merged_data_2020['valence'] = merged_data_2020['valence'].replace({1: -1, 2: 1})
 merged_data_2020['valence'] = merged_data_2020['valence'].replace({1: 1, 2: -1})
+
 merged_data_2020['size_mean'] = merged_data_2020['size_mean'].fillna(0)
 
 # weighted valence?
@@ -58,10 +62,17 @@ model = SARIMAX(
 results = model.fit(maxiter=1000)
 
 forecast_steps = len(county_data_2021)
+# valence_scenarios = [
+#     ('valence 2', 1, 'orange'),  # rescaled to 1
+#     ('valence 1', -1, 'green'),  # rescaled to -1
+#     ('valence 0', 0, 'blue')     # neutral
+# ]
+
+## testing to make sure it's not just projecting more cases for orange since that's the positive one
 valence_scenarios = [
-    ('valence 2', -1, 'orange'),  # rescaled to 1
-    ('valence 1', 1, 'green'),  # rescaled to -1
-    ('valence 0', 0, 'blue')     # neutral
+    ('valence 2 (right-leaning events)', -1, 'orange'),  
+    ('valence 1 (left-leaning events)', 1, 'green'),  
+    ('valence 0 (neutral events)', 0, 'blue')    
 ]
 
 plt.figure(figsize=(15, 9))
@@ -76,7 +87,7 @@ plt.plot(
     range(len(county_data_2020), len(county_data_2020) + forecast_steps),
     county_data_2021['adjusted_cases'],
     label='Ground Truth (First 30 Days of 2021)',
-    color='purple'
+    color='grey'
 )
 
 for label, valence_value, color in valence_scenarios:
