@@ -22,7 +22,8 @@ merged_data['has_event'] = merged_data['fips_code'].notna().astype(int)
 merged_data['valence'] = merged_data['valence'].fillna(0)
 merged_data['size_mean'] = merged_data['size_mean'].fillna(0)
 
-county = '53061'
+# county = '53061'
+county = '06037' # LA county, want to see effect of this 
 county_data = merged_data[merged_data['fips'] == county]
 
 
