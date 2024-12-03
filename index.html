@@ -159,14 +159,56 @@
         </p>
       </section>
 
+      <img style="height: 480px" src="result.jpg" alt="Result graph" />
+
+      <section id="results">
+        <h2>Results</h2>
+        <p>
+          We found two telling results from our outputs: first, that any given
+          event didn't have that much of an effect on causing huge spikes, and
+          second, comparing all events shows that Republican ones were indeed
+          the most likely to spread Covid, followed by control events and then
+          Democratic events. Figure 3 above is from Los Angeles County in
+          California and shows that the predicted cases where the exogenous
+          variable is equal to 2 (Republican-leaning events in our dataset) are
+          higher than both where valence is 0 (no political leanings) and where
+          valence is 1 (Democratic-leaning). This supports our initial
+          hypothesis that Republican-leaning events would be more likely to
+          spread the disease. Still, it was a little surprising how much lower
+          the projected Democratic-leaning spread was even compared to the
+          projected control spread. This follows a general conclusion that
+          ignoring safe disease practices leads to a greater spread of the
+          disease.
+        </p>
+      </section>
+
       <section id="conclusion">
         <h2>Conclusion</h2>
         <p>
-          Our analysis aims to clarify the role of political SSEs in the
-          COVID-19 pandemic, providing insights to inform future public health
-          strategies. Limitations include model imperfection and data
-          availability, but our findings will lay groundwork for further
-          research.
+          The findings of this study show a straightforward but important point:
+          those who did not follow expert recommendations in regards to the
+          pandemic and public health likely contributed the most to increased
+          case counts. Our results suggest that no single event was a major
+          driver of significant spikes in case counts. It’s likely that each
+          event contributed incrementally, compounding the case counts over
+          time. The process of analysis presented several challenges,
+          particularly in working with the datasets. For instance, the valence
+          variable had to be recoded to properly differentiate between the
+          effects of different political events as an exogenous variable in the
+          ARIMA model. The COVID-19 case data was incomplete, with dates showing
+          zero case counts. To address this, we applied data cleaning and
+          imputation strategies to interpolate missing values, aiming to produce
+          more realistic projections. Another complexity was tuning the ARIMA
+          model. The various underlying mechanisms of COVID made it challenging
+          to select parameters that captured the full dynamics of the data, so
+          model optimization took longer than expected. Looking ahead, we aim to
+          expand our analysis to include a broader set of counties, as time
+          constraints limited us to a subset of the 1,736 counties available. We
+          also plan to explore alternative models to validate whether our
+          conclusions remain consistent across different methodologies. By
+          refining both our approach and the data, we hope to gain deeper
+          insights into the relationships between political events, public
+          health behaviors, and disease spread.
         </p>
       </section>
     </main>
