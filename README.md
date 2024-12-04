@@ -1,4 +1,22 @@
-# COVID-19 Case Count Analysis and Forecasting
+# Deliverables/Documentation
+
+### Website
+[https://yanni-ma.github.io/EPI-Project/](https://yanni-ma.github.io/EPI-Project/)
+
+### Project Deliverables
+- **Project Code - Full Repo:**  
+  [GitHub Repository](https://github.com/yanni-ma/EPI-Project)
+
+- **Project Code - Tarball:**  
+  [Tarball](https://github.com/yanni-ma/EPI-Project/blob/main/tar_submission.tar.gz)
+
+- **Project Poster:**  
+  [Google Slides Poster](https://docs.google.com/presentation/d/1V-Z6607hsw5ShxEzHhPr3N0p2Z__Mo120p9noSjtQEQ/edit?usp=sharing)
+
+- **Project Final Report:**  
+  [Final Report](https://github.com/yanni-ma/EPI-Project/blob/main/tar_submission/DOC/CSE_8803_Project_Final_Report.pdf)
+
+# Political SSEs Impact on COVID-19 Case Count Analysis and Forecasting 
 
 This repository contains Python scripts for analyzing and forecasting COVID-19 case counts using advanced statistical models like SARIMAX and SEIR. The project incorporates event-based data (valence, size_mean) to study the potential impacts of political events on case trends.
 
